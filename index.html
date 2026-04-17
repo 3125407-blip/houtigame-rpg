@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>放置系RPG - ホウティゲーム</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>放置系RPG</h1>
+            <p>敵を倒してゴールドを稼ぎ、キャラを強くしよう！</p>
+        </div>
+
+        <div class="main-content">
+            <!-- プレイヤー情報 -->
+            <div class="player-section">
+                <h2>プレイヤー情報</h2>
+                <div class="player-stats">
+                    <p>レベル: <span id="playerLevel">1</span></p>
+                    <p>経験値: <span id="playerExp">0</span> / <span id="playerExpMax">100</span></p>
+                    <p>HP: <span id="playerHP">100</span> / <span id="playerHPMax">100</span></p>
+                    <p>攻撃力: <span id="playerAttack">10</span></p>
+                    <p>ゴールド: <span id="playerGold">0</span>G</p>
+                </div>
+                <div class="exp-bar">
+                    <div class="exp-progress" id="expProgress"></div>
+                </div>
+            </div>
+
+            <!-- 敵情報 -->
+            <div class="enemy-section">
+                <h2>敵</h2>
+                <div class="enemy-stats">
+                    <p>敵: <span id="enemyName">ゴブリン</span> (Lv.<span id="enemyLevel">1</span>)</p>
+                    <p>HP: <span id="enemyHP">30</span> / <span id="enemyHPMax">30</span></p>
+                </div>
+                <div class="hp-bar">
+                    <div class="hp-progress" id="enemyHPProgress"></div>
+                </div>
+                <button id="attackBtn" class="action-btn">攻撃！</button>
+            </div>
+
+            <!-- ゲーム情報 -->
+            <div class="info-section">
+                <h2>戦闘情報</h2>
+                <div id="battleLog" class="battle-log">
+                    <p>ゲーム開始！敵に攻撃してゴールドを稼ごう</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ショップ -->
+        <div class="shop-section">
+            <h2>ショップ</h2>
+            <div class="shop-items">
+                <div class="shop-item">
+                    <h3>剣</h3>
+                    <p>攻撃力 +5</p>
+                    <p>価格: <span class="price">100</span>G</p>
+                    <button class="buy-btn" data-item="sword" data-price="100">購入</button>
+                </div>
+                <div class="shop-item">
+                    <h3>強い剣</h3>
+                    <p>攻撃力 +15</p>
+                    <p>価格: <span class="price">500</span>G</p>
+                    <button class="buy-btn" data-item="strong-sword" data-price="500">購入</button>
+                </div>
+                <div class="shop-item">
+                    <h3>鎧</h3>
+                    <p>HP +50</p>
+                    <p>価格: <span class="price">200</span>G</p>
+                    <button class="buy-btn" data-item="armor" data-price="200">購入</button>
+                </div>
+                <div class="shop-item">
+                    <h3>強い鎧</h3>
+                    <p>HP +150</p>
+                    <p>価格: <span class="price">1000</span>G</p>
+                    <button class="buy-btn" data-item="strong-armor" data-price="1000">購入</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
