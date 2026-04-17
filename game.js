@@ -117,10 +117,13 @@ function attack() {
     gameState.player.hp -= enemyDamage;
     addLog(`敵の反撃！${enemyDamage}のダメージを受けた`);
 
-    if (gameState.player.hp <= 0) {
-        addLog('プレイヤーが倒された！');
-        gameState.player.hp = 0;
-    }
+   if (gameState.player.hp <= 0) {
+    gameState.player.hp = gameState.player.hpMax;
+    gameState.player.gold = Math.floor(gameState.player.gold * 0.5);
+    addLog('倒された！ゴールドの50%を失った...');
+    addLog('復活した！敵と戦い続けよう！');
+    resetEnemy();
+}
 
     updateUI();
 }
