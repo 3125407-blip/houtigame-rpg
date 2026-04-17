@@ -342,3 +342,9 @@ h2 {
         grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     }
 }
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
