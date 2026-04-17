@@ -1,29 +1,344 @@
-.bg {
-    background-color: #f0f0f0;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-h1 {
-    font-size: 2em;
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
     color: #333;
 }
 
-.button {
-    padding: 10px 15px;
-    background-color: #007bff;
-    border: none;
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    padding: 40px;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 40px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    padding: 30px;
+    border-radius: 15px;
     color: white;
-    font-size: 14px;
+    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+}
+
+.header h1 {
+    font-size: 3em;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    letter-spacing: 2px;
+}
+
+.header p {
+    font-size: 1.2em;
+    opacity: 0.9;
+}
+
+.main-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.player-section,
+.enemy-section {
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border: 3px solid #667eea;
+}
+
+.enemy-section {
+    border-color: #e74c3c;
+    background: linear-gradient(135deg, #ffe5e5 0%, #ffcccc 100%);
+}
+
+h2 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 1.8em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 3px solid;
+    padding-bottom: 10px;
+}
+
+.player-section h2 {
+    border-bottom-color: #667eea;
+    color: #667eea;
+}
+
+.enemy-section h2 {
+    border-bottom-color: #e74c3c;
+    color: #e74c3c;
+}
+
+.player-stats,
+.enemy-stats {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.player-stats p,
+.enemy-stats p {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    font-size: 1.1em;
+    border-bottom: 1px solid #eee;
+    font-weight: 500;
+}
+
+.player-stats p:last-child,
+.enemy-stats p:last-child {
+    border-bottom: none;
+}
+
+.player-stats span,
+.enemy-stats span {
+    font-weight: bold;
+    font-size: 1.2em;
+    color: #667eea;
+    background: #f0f4ff;
+    padding: 5px 15px;
+    border-radius: 20px;
+}
+
+.enemy-section span {
+    color: #e74c3c;
+    background: #ffe5e5;
+}
+
+.exp-bar,
+.hp-bar {
+    background: #ddd;
+    height: 30px;
+    border-radius: 15px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.exp-progress,
+.hp-progress {
+    height: 100%;
+    background: linear-gradient(90deg, #667eea, #764ba2);
+    width: 0%;
+    transition: width 0.5s ease;
+    border-radius: 15px;
+    position: relative;
+}
+
+.exp-progress::after,
+.hp-progress::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    animation: shimmer 2s infinite;
+}
+
+.hp-progress {
+    background: linear-gradient(90deg, #e74c3c, #c0392b);
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+.action-btn {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    border: none;
+    padding: 18px 40px;
+    font-size: 1.3em;
+    font-weight: bold;
+    border-radius: 10px;
     cursor: pointer;
+    width: 100%;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
-.button:hover {
-    background-color: #0056b3;
+.action-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(102, 126, 234, 0.5);
 }
 
-#game-log {
-    max-height: 400px;
-    overflow-y: scroll;
-    border: 1px solid #ccc;
+.action-btn:active {
+    transform: translateY(-1px);
+}
+
+.info-section {
+    grid-column: 1 / -1;
+    background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+    padding: 30px;
+    border-radius: 15px;
+    border: 3px solid #3498db;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.info-section h2 {
+    border-bottom-color: #3498db;
+    color: #3498db;
+}
+
+.battle-log {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    max-height: 200px;
+    overflow-y: auto;
+    border: 2px solid #3498db;
+}
+
+.battle-log p {
+    color: #555;
+    margin-bottom: 10px;
     padding: 10px;
-    background-color: white;
+    border-left: 4px solid #3498db;
+    padding-left: 15px;
+    background: #f9f9f9;
+    border-radius: 5px;
+    font-size: 0.95em;
+}
+
+.battle-log p:first-child {
+    background: #e8f5e9;
+    border-left-color: #4CAF50;
+    color: #2e7d32;
+    font-weight: bold;
+}
+
+.shop-section {
+    background: linear-gradient(135deg, #fff9e6 0%, #ffe6cc 100%);
+    padding: 40px;
+    border-radius: 15px;
+    border: 3px solid #ffc107;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.shop-section h2 {
+    border-bottom-color: #ffc107;
+    color: #f39c12;
+}
+
+.shop-items {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.shop-item {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    text-align: center;
+    border: 3px solid #ffc107;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(255, 193, 7, 0.2);
+}
+
+.shop-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(255, 193, 7, 0.4);
+    border-color: #ffb300;
+}
+
+.shop-item h3 {
+    color: #333;
+    margin-bottom: 10px;
+    font-size: 1.3em;
+}
+
+.shop-item p {
+    color: #666;
+    font-size: 0.95em;
+    margin-bottom: 8px;
+}
+
+.price {
+    color: #f39c12;
+    font-weight: bold;
+    font-size: 1.3em;
+    display: block;
+    margin-bottom: 15px;
+}
+
+.buy-btn {
+    background: linear-gradient(135deg, #ffc107, #ffb300);
+    color: #333;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    width: 100%;
+    font-size: 1em;
+    box-shadow: 0 5px 15px rgba(255, 193, 7, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.buy-btn:hover {
+    background: linear-gradient(135deg, #ffb300, #ff9800);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(255, 193, 7, 0.4);
+}
+
+.buy-btn:active {
+    transform: translateY(0);
+}
+
+.buy-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+@media (max-width: 1024px) {
+    .main-content {
+        grid-template-columns: 1fr;
+    }
+
+    .container {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .header h1 {
+        font-size: 2em;
+    }
+
+    .header {
+        padding: 20px;
+    }
+
+    .shop-items {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
 }
